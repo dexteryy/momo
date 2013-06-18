@@ -1,0 +1,32 @@
+{
+    "name": "momo",
+    "description": "A framework and a collection for separate and simple implementation of touch gestures",
+    "homepage": "http://ozjs.org/momo",
+    "author": {
+        "name": "dexteryy",
+        "email": "dexter.yy@gmail.com",
+        "url": "http://github.com/dexteryy"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/dexteryy/momo.git"
+    },
+    "licenses": [{
+        "type": "MIT",
+        "url": "http://www.opensource.org/licenses/mit-license.php"
+    }],
+    "version": "1.0.0",
+    "engines": {
+        "node": ">=0.8.0"
+    },
+    "devDependencies": {
+    },
+    "dependencies": {
+    },
+    "keywords" : [
+        "gesture",
+        "touch",
+        "amd",
+        "oz"
+    ]
+}
