@@ -16,10 +16,12 @@ title: Momo
 
 ### Get the Code
 
-* [Download on Github](https://github.com/dexteryy/momo/)
-* Add to your project as new dependency:
-    * via [istatic](http://ozjs.org/istatic)
-    * via [volo](https://github.com/volojs/volo)
+Add to your project as new dependency
+
+* via [bower](http://bower.io/) - `bower install momo`
+* via [istatic](http://ozjs.org/istatic)
+
+Or [download directly from Github](https://github.com/dexteryy/momo/)
 
 ## Dependencies
 
@@ -27,18 +29,23 @@ title: Momo
 
 ## Modules Overview
 
-* [momo](https://github.com/dexteryy/momo/blob/master/momo.js)
-    * A sample implementation for adapter
-* [momo/base](https://github.com/dexteryy/momo/blob/master/momo/base.js)
-    * A simple framework
-* [momo/tap](https://github.com/dexteryy/momo/blob/master/momo/tap.js) 
-    * 'tap', 'doubletap', 'hold', 'tapstart', 'tapcancel'
-* [momo/scroll](https://github.com/dexteryy/momo/blob/master/momo/scroll.js) 
-    * 'scrolldown', 'scrollup', 'scrollstart', 'scrollend'
-* [momo/swipe](https://github.com/dexteryy/momo/blob/master/momo/swipe.js) 
-    * 'swipeup', 'swipedown', 'swiperight', 'swipeleft'
-* momo/drag (beta)
-    * 'drag', 'dragover', 'dragstart', 'dragend'
+#### [momo](https://github.com/dexteryy/momo/blob/master/momo.js)
+> * A sample implementation for adapter
+
+#### [momo/base](https://github.com/dexteryy/momo/blob/master/momo/base.js)
+> * A simple framework
+
+#### [momo/tap](https://github.com/dexteryy/momo/blob/master/momo/tap.js) 
+> * 'tap', 'doubletap', 'hold', 'tapstart', 'tapcancel'
+
+#### [momo/scroll](https://github.com/dexteryy/momo/blob/master/momo/scroll.js) 
+> * 'scrolldown', 'scrollup', 'scrollstart', 'scrollend'
+
+#### [momo/swipe](https://github.com/dexteryy/momo/blob/master/momo/swipe.js) 
+> * 'swipeup', 'swipedown', 'swiperight', 'swipeleft'
+
+#### momo/drag (beta)
+> * 'drag', 'dragover', 'dragstart', 'dragend'
 
 ## Examples
 
