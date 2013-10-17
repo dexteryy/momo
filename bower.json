@@ -1,9 +1,9 @@
 {
     "name": "momo",
     "description": "A framework and a collection for separate and simple implementation of touch gestures",
-    "version": "1.0.1",
+    "version": "1.1.0",
     "dependencies": {
-        "mo": "~1.5.2"
+        "mo": "~1.6.2"
     },
     "ignore": [
         "**/.*",
