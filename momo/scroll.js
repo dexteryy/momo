@@ -29,22 +29,30 @@ define('momo/scroll', [
         },
 
         watchScroll: function(elm){
-            this.scrollingNode = elm;
+            this.scrollingNode = elm.nodeName === 'BODY' ? document : elm;
+            this.scrollPosNode = 'scrollTop' in elm ? elm : document.body;
         },
 
         checkScollDirection: function(y){
             var node = { target: this.node },
+                ev = this.event,
                 d = y - this._lastY,
                 threshold = this._config.directThreshold;
+            if (!this._started 
+                    && (d < 0 - threshold
+                        || d > threshold)) {
+                this._started = true;
+                this.trigger(node, ev.scrollstart);
+            }
             if (d < 0 - threshold) {
                 if (this._scrollDown !== true) {
-                    this.trigger(node, this.event.scrolldown);
+                    this.trigger(node, ev.scrolldown);
                 }
                 this._lastY = y;
                 this._scrollDown = true;
             } else if (d > threshold) {
                 if (this._scrollDown !== false) {
-                    this.trigger(node, this.event.scrollup);
+                    this.trigger(node, ev.scrollup);
                 }
                 this._lastY = y;
                 this._scrollDown = false;
@@ -66,8 +74,10 @@ define('momo/scroll', [
                     self.once('scroll', function(){
                         if (tm === self._tm) {
                             if (!scrolling) {
-                                self._started = true;
-                                self.trigger({ target: self.node }, self.event.scrollstart);
+                                if (!self._started) {
+                                    self._started = true;
+                                    self.trigger({ target: self.node }, self.event.scrollstart);
+                                }
                                 if (self._ended) {
                                     self._ended = false;
                                     self.trigger({ target: self.node }, self.event.scrollend);
@@ -84,24 +94,25 @@ define('momo/scroll', [
             this.checkScollDirection(t.clientY);
             //this._lastY = t.clientY;
             if (this.scrollingNode) {
-                this._scrollY = this.scrollingNode.scrollTop;
+                this._scrollY = this.scrollPosNode.scrollTop;
             }
         },
 
         release: function(e){
             var self = this, 
                 t = this.SUPPORT_TOUCH ? e.changedTouches[0] : e,
+                ev = self.event,
                 node = { target: self.node };
             // up/down
             this.checkScollDirection(t.clientY);
             // end
             if (self._scrollY !== null) {
-                var vp = self.scrollingNode,
+                var vp = self.scrollPosNode,
                     gap = Math.abs(vp.scrollTop - self._scrollY) || 0;
                 if (self._scrollY >= 0 && (self._scrollY <= vp.scrollHeight + vp.offsetHeight)
                         && gap < self._config.scrollEndGap) {
                     if (self._started) {
-                        self.trigger(node, self.event.scrollend);
+                        self.trigger(node, ev.scrollend);
                         self._started = false;
                     } else {
                         self._ended = true;
@@ -113,14 +124,14 @@ define('momo/scroll', [
                         if (tm === self._tm) {
                             self._scrolling = false;
                             self._started = false;
-                            self.trigger(node, self.event.scrollend);
+                            self.trigger(node, ev.scrollend);
                         }
-                    }, vp);
+                    }, self.scrollingNode);
                 }
                 self._scrollY = null;
             } else if (self._started) {
                 self._started = false;
-                self.trigger(node, self.event.scrollend);
+                self.trigger(node, ev.scrollend);
             }
         }
     
