@@ -80,7 +80,7 @@ define('momo/scroll', [
                                 }
                                 if (self._ended) {
                                     self._ended = false;
-                                    self.trigger({ target: self.node }, self.event.scrollend);
+                                    self._scrollEnd();
                                 }
                             }
                         }
@@ -112,8 +112,7 @@ define('momo/scroll', [
                 if (self._scrollY >= 0 && (self._scrollY <= vp.scrollHeight + vp.offsetHeight)
                         && gap < self._config.scrollEndGap) {
                     if (self._started) {
-                        self.trigger(node, ev.scrollend);
-                        self._started = false;
+                        self._scrollEnd();
                     } else {
                         self._ended = true;
                     }
@@ -123,16 +122,20 @@ define('momo/scroll', [
                     self.once('scroll', function(){
                         if (tm === self._tm) {
                             self._scrolling = false;
-                            self._started = false;
-                            self.trigger(node, ev.scrollend);
+                            self._scrollEnd();
                         }
                     }, self.scrollingNode);
                 }
                 self._scrollY = null;
             } else if (self._started) {
-                self._started = false;
-                self.trigger(node, ev.scrollend);
+                self._scrollEnd();
             }
+        },
+
+        _scrollEnd: function(){
+            this._started = false;
+            this._tm = +new Date();
+            this.trigger({ target: this.node }, this.event.scrollend);
         }
     
     });
